@@ -25,4 +25,10 @@ window.onload = function() {
     }).catch(error => {
         console.log('Autoplay failed:', error);
     });
+
+    // Adiciona o ouvinte de evento quando a janela carrega
+    document.getElementById('play-button').addEventListener('click', function() {
+        var audio = document.getElementById('background-audio');
+        audio.play();
+    });
 }
