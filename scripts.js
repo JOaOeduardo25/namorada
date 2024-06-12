@@ -17,18 +17,26 @@ window.onload = function() {
     showSlides();
 
     let audio = document.getElementById('background-audio');
-    audio.volume = 0;
-    audio.play().then(() => {
-        setTimeout(() => {
-            audio.volume = 1;
-        }, 1000); // Define um atraso de 1 segundo para aumentar o volume
-    }).catch(error => {
-        console.log('Autoplay failed:', error);
-    });
+    if (audio) {
+        audio.volume = 0;
+        audio.play().then(() => {
+            setTimeout(() => {
+                audio.volume = 1;
+            }, 1000); // Define um atraso de 1 segundo para aumentar o volume
+        }).catch(error => {
+            console.log('Autoplay failed:', error);
+        });
+    } else {
+        console.log('Elemento de áudio não encontrado.');
+    }
 
-    // Adiciona o ouvinte de evento quando a janela carrega
+    // Adiciona o ouvinte de evento ao botão de reprodução
     document.getElementById('play-button').addEventListener('click', function() {
         var audio = document.getElementById('background-audio');
-        audio.play();
+        if (audio) {
+            audio.play();
+        } else {
+            console.log('Elemento de áudio não encontrado.');
+        }
     });
 }
